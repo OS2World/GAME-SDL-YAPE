@@ -1,0 +1,75 @@
+objects =		\
+archdep.o		\
+interface.o		\
+tedmem.o		\
+cpu.o	\
+sound.o	\
+keyboard.o \
+tape.o \
+diskio.o \
+main.o \
+
+
+headers = $(objects:.o=.h)
+
+CC = g++
+cflags = -O3 -finline -frerun-loop-opt -Winline `sdl-config --cflags`
+libs = `sdl-config --libs` 
+
+#SDL_CFLAGS := $(shell sdl-config --cflags)
+#SDL_LDFLAGS := $(shell sdl-config --libs)
+
+
+yapedebug : $(objects)
+	$(CC) $(cflags) $(libs) -g -o yape $^
+
+cpu.o : cpu.cpp $(headers)
+	$(CC) $(cflags) -c $<
+
+tedmem.o : tedmem.cpp
+	$(CC) $(cflags) -c $< 
+
+sound.o : sound.cpp
+	$(CC) $(cflags) -c $< 
+
+archdep.o : archdep.cpp
+	$(CC) $(cflags) -c $< 
+
+main.o : main.cpp
+	$(CC) $(cflags) -c $<
+
+interface.o : interface.cpp
+	$(CC) $(cflags) -c $< 
+
+keyboard.o : keyboard.cpp
+	$(CC) $(cflags) -c $< 
+
+tape.o : tape.cpp
+	$(CC) $(cflags) -c $< 
+
+diskio.o : diskio.cpp
+	$(CC) $(cflags) -c $< 
+
+
+yape : $(objects)
+	$(CC) $(cflags) -o yape $(libs) $(objects)
+
+clean :
+	rm -f ./*.o
+
+tgz :
+	tar -czf yapelin.tgz *.cpp *.h yape.conf Makefile Yapelin.bmp copying README.Linux Changes
+
+e :
+	#emacs -fn 9x13 Makefile *.h *.cpp &
+	emacs -fn 10x20 Makefile *.h *.cpp &
+
+a :
+	mcopy $(headers) *.cpp Makefile a:
+
+install : 
+	@if [ ! -e $(HOME)/yape ]; then mkdir $(HOME)/yape ; fi
+	@cp yape.conf $(HOME)/yape $^
+	@cp ./yape $(BINDIR)
+
+

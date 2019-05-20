@@ -1,0 +1,22 @@
+#
+# This contains all the linker definitions that are needed for both the
+# Debug and the Non-Debug version of YAPE.
+#
+name YAPE
+file archdep
+file cpu
+file diskio
+file interface
+file keyboard
+file main
+file sound
+file tape
+file tedmem
+OPTION MAP=yape
+OPTION DESCRIPTION 'YAPE SDL Version'
+OPTION ELIMINATE
+OPTION MANYAUTODATA
+OPTION OSNAME='OS/2 and eComStation'
+OPTION SHOWDEAD
+LIB y:\sdl-1.2.7\src\sdl.lib
+LIBPATH %os2tk%\lib

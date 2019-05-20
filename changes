@@ -1,0 +1,19 @@
+
+Changes in v0.32.3
+==================
+
+- noise channel fixed
+- the FPS counter now reports values below 50 FPS correctly
+- 50 Hz synchronization is also fixed
+
+Changes in v0.32.2
+==================
+
+- sound is implemented! (yet a bit clumsier than in the Windows version)
+- configuration settings now saved to user's home directory
+- some other bugs with the configuration file fixed
+- some keyboard mapping problems solved (cursor keys are now always usable)
+- save screenshots by pressing F7
+- many new bugs
+- can't remember more, it's been too long since last version :)
+ 
